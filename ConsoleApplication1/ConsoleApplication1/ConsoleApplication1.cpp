@@ -1,8 +1,14 @@
-﻿#include <iostream>
+#include <iostream>
+#include<cstdlib>
+#include<ctime>
+#include <locale.h>
+
 
 using namespace std;
 
+
 void insertionSort(int arr[], int n) {
+    setlocale(LC_ALL, "Rus");
     int i, key, j;
     for (i = 1; i < n; i++) {
         key = arr[i];
@@ -12,7 +18,6 @@ void insertionSort(int arr[], int n) {
             arr[j + 1] = arr[j];
             j = j - 1;
         }
-
         arr[j + 1] = key;
     }
 }
@@ -22,11 +27,12 @@ int main() {
     cout << "Введите размер массива: ";
     cin >> n;
 
-    int arr[n];
+    int* arr = new int[n];//иницилизация генератора рандомных чисел
+    srand(time(0));
 
-    cout << "Введите элементы массива:\n";
-    for (int i = 0; i < n; i++) {
-        cin >> arr[i];
+
+    for (int i = 0; i < n; i++) {//заполонение массива рандомными числами 
+        arr[i] = rand() % 2001-1000;
     }
 
     cout << "Исходный массив: ";
@@ -39,7 +45,7 @@ int main() {
 
     cout << "Отсортированный массив: ";
     for (int i = 0; i < n; i++) {
-        cout << arr[i] << " ";
+        cout << arr[i] << "  ";
     }
     cout << endl;
 
